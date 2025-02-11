@@ -2,6 +2,7 @@ package com.insurance.VehicleInsurance.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Data
@@ -13,28 +14,41 @@ public class Member {
     @Column(name = "MemberID")
     private Long memberId;
 
+    @NotNull(message = "First name cannot be null") //  Added validation
+    @Size(min = 2, message = "First name must have at least 2 characters") //  Added validation
     @Column(name = "firstname")
     private String firstName;
 
+    @NotNull(message = "Last name cannot be null") //  Added validation
+    @Size(min = 2, message = "Last name must have at least 2 characters") //  Added validation
     @Column(name = "lastname")
     private String lastName;
 
+    @Email(message = "Invalid email format") //  Added validation
+    @NotNull(message = "Email cannot be null") //  Added validation
     @Column(name = "Email")
     private String email;
 
+    @NotNull(message = "Phone number cannot be null") //  Added validation
+    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits") //  Added validation
     @Column(name = "Phone")
     private String phone;
 
+    @NotNull(message = "Street address cannot be null") //  Added validation
     @Column(name = "Street")
     private String street;
 
+    @NotNull(message = "City cannot be null") //  Added validation
     @Column(name = "City")
     private String city;
 
+    @NotNull(message = "Province cannot be null") //  Added validation
     @Column(name = "Province")
     private String province;
 
-    @Column(name = "Postal Code")
+    @NotNull(message = "Postal code cannot be null") //  Added validation
+    @Pattern(regexp = "^[A-Za-z]\\d[A-Za-z] ?\\d[A-Za-z]\\d$", message = "Invalid postal code format") //  Validates Canadian postal codes
+    @Column(name = "Postal_Code") // (no spaces allowed)
     private String postalCode;
 
     public Member() {}
