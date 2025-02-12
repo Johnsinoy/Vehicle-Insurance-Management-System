@@ -8,6 +8,7 @@ public class VehicleInsuranceManagementApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VehicleInsuranceManagementApplication.class, args);
+
 	}
 
 }
