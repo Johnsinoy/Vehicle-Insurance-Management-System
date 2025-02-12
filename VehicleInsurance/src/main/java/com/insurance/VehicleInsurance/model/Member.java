@@ -1,6 +1,7 @@
 package com.insurance.VehicleInsurance.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Entity
@@ -13,28 +14,41 @@ public class Member {
     @Column(name = "MemberID")
     private Long memberId;
 
+    @NotNull(message = "First name cannot be null")
+    @Size(min = 2, message = "First name must have at least 2 characters")
     @Column(name = "firstname")
     private String firstName;
 
+    @NotNull(message = "Last name cannot be null")
+    @Size(min = 2, message = "Last name must have at least 2 characters")
     @Column(name = "lastname")
     private String lastName;
 
+    @Email(message = "Invalid email format")
+    @NotNull(message = "Email cannot be null")
     @Column(name = "Email")
     private String email;
 
+    @NotNull(message = "Phone number cannot be null")
+    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
     @Column(name = "Phone")
     private String phone;
 
+    @NotNull(message = "Street address cannot be null")
     @Column(name = "Street")
     private String street;
 
+    @NotNull(message = "City cannot be null")
     @Column(name = "City")
     private String city;
 
+    @NotNull(message = "Province cannot be null")
     @Column(name = "Province")
     private String province;
 
-    @Column(name = "Postal Code")
+    @NotNull(message = "Postal code cannot be null")
+    @Pattern(regexp = "^[A-Za-z]\\d[A-Za-z] ?\\d[A-Za-z]\\d$", message = "Invalid postal code format")
+    @Column(name = "Postal_Code") // ✅ Fixed column name to avoid spaces
     private String postalCode;
 
     public Member() {}
