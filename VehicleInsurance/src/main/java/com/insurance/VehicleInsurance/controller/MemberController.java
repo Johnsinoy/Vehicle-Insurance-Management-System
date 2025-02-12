@@ -4,9 +4,15 @@ import com.insurance.VehicleInsurance.model.Member;
 import com.insurance.VehicleInsurance.service.MemberService;
 import com.insurance.VehicleInsurance.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/members")
@@ -44,6 +50,18 @@ public class MemberController {
     public String deleteMember(@PathVariable Long id) {
         memberService.deleteMember(id);
         return "Member with ID " + id + " has been deleted!";
+    }
+
+    // Handle validation errors for input fields
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        for (FieldError error : ex.getBindingResult().getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+        return errors;
     }
 
     // Handle cases where the requested resource is not found

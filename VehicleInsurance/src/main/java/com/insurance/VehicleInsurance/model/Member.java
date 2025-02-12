@@ -48,7 +48,7 @@ public class Member {
 
     @NotNull(message = "Postal code cannot be null")
     @Pattern(regexp = "^[A-Za-z]\\d[A-Za-z] ?\\d[A-Za-z]\\d$", message = "Invalid postal code format")
-    @Column(name = "Postal_Code") // ✅ Fixed column name to avoid spaces
+    @Column(name = "Postal Code") // ✅ Fixed column name to avoid spaces
     private String postalCode;
 
     public Member() {}
