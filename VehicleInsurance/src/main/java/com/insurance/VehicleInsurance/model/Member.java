@@ -16,11 +16,13 @@ public class Member {
 
     @NotNull(message = "First name cannot be null")
     @Size(min = 2, message = "First name must have at least 2 characters")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "First name must only contain letters")
     @Column(name = "firstname")
     private String firstName;
 
     @NotNull(message = "Last name cannot be null")
     @Size(min = 2, message = "Last name must have at least 2 characters")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "Last name must only contain letters")
     @Column(name = "lastname")
     private String lastName;
 
@@ -39,10 +41,12 @@ public class Member {
     private String street;
 
     @NotNull(message = "City cannot be null")
+    @Pattern(regexp = "^[A-Za-z ]+$", message = "City must only contain letters and spaces")
     @Column(name = "City")
     private String city;
 
     @NotNull(message = "Province cannot be null")
+    @Pattern(regexp = "^[A-Za-z ]+$", message = "Provinces must only contain letters and spaces")
     @Column(name = "Province")
     private String province;
 
