@@ -3,6 +3,8 @@ package com.insurance.VehicleInsurance.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Data
@@ -52,7 +54,6 @@ public class Member {
 
     @NotNull(message = "Postal code cannot be null")
     @Pattern(regexp = "^[A-Za-z]\\d[A-Za-z] ?\\d[A-Za-z]\\d$", message = "Invalid postal code format")
-    @Column(name = "Postal Code") // ✅ Fixed column name to avoid spaces
     private String postalCode;
 
     public Member() {}
