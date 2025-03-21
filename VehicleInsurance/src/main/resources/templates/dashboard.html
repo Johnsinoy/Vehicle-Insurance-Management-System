@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<p>
+    Welcome,
+    <span th:if="${not #strings.isEmpty(#authentication?.name)}" th:text="${#authentication?.name}"></span>
+    <span th:unless="${#authorization.expression('isAuthenticated()')}">Guest</span>
+</p>
+
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>
