@@ -41,7 +41,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login**", "/css/**", "/js/**", "/public/**").permitAll()
+                        .requestMatchers(
+                                "/login**",
+                                "/register",                // 👈 Allow access to registration page
+                                "/forgot-password",         // 👈 Optional: allow forgot password
+                                "/css/**",
+                                "/js/**",
+                                "/public/**"
+                        ).permitAll()
                         .requestMatchers("/dashboard").authenticated()
                         .anyRequest().authenticated()
                 )
